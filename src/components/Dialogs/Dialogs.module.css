@@ -1,0 +1,23 @@
+.dialogs {
+    display: grid;
+    /*разбиваем на колонки*/
+
+    grid-template-columns: 2fr 5fr;
+    /*делятся на две части */
+
+}
+
+.dialogsItems {
+    padding: 10px;
+}
+.dialogsItems .active{
+    color: aqua;
+}
+
+
+.messages {
+    padding: 10px;
+}
+.dialog{
+
+}
