@@ -5,20 +5,25 @@ import Nav from './components/Nav/Nav';
 import Profile from './components/Profile/Profile';
 import Dialogs from "./components/Dialogs/Dialogs";
 // noinspection ES6CheckImport
-import  {Route,BrowserRouter} from "react-router-dom";
+import {Route, BrowserRouter} from "react-router-dom";
 
-function App() {
+function App(props) {
+
+
     return (
         <BrowserRouter>
-        <div className="app-wrapper">
-            <Header/>
-            <Nav/>
-            <div className='app-wrapper-content'>
-                <Route path='/dialogs' component={Dialogs}/>
-                <Route path='/profile' component={Profile}/>
-            </div>
+            <div className="app-wrapper">
+                <Header/>
+                <Nav/>
+                <div className='app-wrapper-content'>
+                    <Route path='/dialogs' render={() => <Dialogs
+                        messages={props.state.messages}
+                        dialogs={props.state.dialogs}
+                    />}/>
+                    <Route path='/profile' render={() => <Profile message={props.state.message}/>}/>
+                </div>
 
-        </div>
+            </div>
         </BrowserRouter>
     );
 }
