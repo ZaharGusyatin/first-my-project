@@ -2,7 +2,7 @@
     display: grid;
     /*разбиваем на колонки*/
 
-    grid-template-columns: 2fr 5fr;
+    grid-template-columns: 2fr 4fr 2fr;
     /*делятся на две части */
 
 }

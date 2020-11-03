@@ -17,10 +17,11 @@ function App(props) {
                 <Nav/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs' render={() => <Dialogs
-                        messages={props.state.messages}
-                        dialogs={props.state.dialogs}
+                        stater={props.state.messagesPage}
+
                     />}/>
-                    <Route path='/profile' render={() => <Profile message={props.state.message}/>}/>
+                    <Route path='/profile' render={() => <Profile stater={props.state.profilePage}
+                    addPost={props.addPost}/>}/>
                 </div>
 
             </div>
