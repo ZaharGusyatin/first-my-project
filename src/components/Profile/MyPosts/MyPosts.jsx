@@ -9,19 +9,23 @@ const MyPosts = (props) => {
 
     let btnClick=()=>{
 
-        let text= newPostElement.current.value
+
         //считывает с тексАреа
-        props.addPost(text)
+        props.addPost()
         // alert(text)
         //делает шторму на экране
-        newPostElement.current.value=''
+
     }
 
 
+    let onPostChange=()=>{
+        let text= newPostElement.current.value
+        props.updateNewPostText(text)
+    };
     return <div className={s.paddingTen}>
         <h3>My POSTS</h3>
         <div>
-            <div><textarea ref={newPostElement}/></div>
+            <div><textarea ref={newPostElement} onChange={onPostChange} value={props.state.newPostText}/></div>
             <div><button onClick={btnClick}>Add Post</button></div>
             <div className={s.marginTen}>
                 {postsElements}

@@ -18,10 +18,14 @@ function App(props) {
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs' render={() => <Dialogs
                         stater={props.state.messagesPage}
+                            addPostDialogs={props.addPostDialogs}
+                            updateNewPostTextDialogs={props.updateNewPostTextDialogs}
+
 
                     />}/>
                     <Route path='/profile' render={() => <Profile stater={props.state.profilePage}
-                    addPost={props.addPost}/>}/>
+                                                                  addPost={props.addPost}
+                                                                  updateNewPostText={props.updateNewPostText}/>}/>
                 </div>
 
             </div>
