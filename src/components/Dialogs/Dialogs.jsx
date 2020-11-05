@@ -2,23 +2,27 @@ import React from 'react'
 import s from './Dialogs.module.css'
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
+import {addPostActionCreatorDialogs, updateNewPostTextActionCreatorDialogs} from "../../redux/state";
 
 
 const Dialogs = (props) => {
 
 
-    let messageElements = props.stater.messages.map(m => <Message message={m.message} id={m.id} />)
-    let dialogsElements = props.stater.dialogs.map(d => <DialogItem name={d.name} id={d.id} src={d.src}/>);
+    let messageElements = props.state.messages.map(m => <Message message={m.message} id={m.id}/>)
+    let dialogsElements = props.state.dialogs.map(d => <DialogItem name={d.name} id={d.id} src={d.src}/>);
 
 // window.stater=state
 
-    let newPostElement=React.createRef()
-    let btnClick=()=>{
-        props.addPostDialogs()
+    let newPostElement = React.createRef()
+    let btnClick = () => {
+        props.dispatch(addPostActionCreatorDialogs())
+
     }
-    let onPostChange=()=>{
-        let text= newPostElement.current.value
-        props.updateNewPostTextDialogs(text)
+    let onPostChange = () => {
+        let text = newPostElement.current.value
+        let action = updateNewPostTextActionCreatorDialogs(text)
+        props.dispatch(action)
+
     };
     return <div className={s.dialogs}>
         <div className={s.dialogsItems}>
@@ -26,8 +30,12 @@ const Dialogs = (props) => {
         </div>
         <div className={s.messages}>
             {messageElements}
-            <div><textarea ref={newPostElement} onChange={onPostChange} value={props.stater.newPostTextDialogs}/></div>
-            <div><button onClick={btnClick}>Add Post</button></div>
+            <div><textarea placeholder='Enter your mess' ref={newPostElement}
+                           onChange={onPostChange}
+                           value={props.state.newPostTextDialogs}/></div>
+            <div>
+                <button onClick={btnClick}>send</button>
+            </div>
         </div>
 
 

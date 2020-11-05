@@ -17,15 +17,13 @@ function App(props) {
                 <Nav/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs' render={() => <Dialogs
-                        stater={props.state.messagesPage}
-                            addPostDialogs={props.addPostDialogs}
-                            updateNewPostTextDialogs={props.updateNewPostTextDialogs}
+                        state={props.state.messagesPage}
+                        dispatch={props.dispatch}
 
 
                     />}/>
-                    <Route path='/profile' render={() => <Profile stater={props.state.profilePage}
-                                                                  addPost={props.addPost}
-                                                                  updateNewPostText={props.updateNewPostText}/>}/>
+                    <Route path='/profile' render={() => <Profile state={props.state.profilePage}
+                                                                  dispatch={props.dispatch}/>}/>
                 </div>
 
             </div>
