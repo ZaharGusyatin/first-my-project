@@ -3,3 +3,4 @@ return{
     state
 }
 }
+export default sidebarReducer
