@@ -4,10 +4,12 @@ import MyPosts from "./MyPosts";
 
 
 const MyPostsContainer = (props) => {
+    let store=props.store.getState().profilePage
+
 
 
     let btnClick1 = () => {
-        props.dispatch(addPostActionCreator())
+        props.store.dispatch(addPostActionCreator())
 
 
         //считывает с тексАреа
@@ -20,12 +22,12 @@ const MyPostsContainer = (props) => {
 
     let onPostChange = (text) => {
         let action = updateNewPostTextActionCreator(text);
-        props.dispatch(action)
+        props.store.dispatch(action)
     };
     return <MyPosts updateNewPostText={onPostChange}
                     addPost={btnClick1}
-                    state={props.state.message}
-                    newPostText={props.state.newPostText}
+                    message={store.message}
+                    newPostText={store.newPostText}
     />
 }
 export default MyPostsContainer

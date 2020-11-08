@@ -5,7 +5,7 @@ import s from './MyPosts.module.css'
 
 const MyPosts = (props) => {
 
-    let postsElements = props.state.map(p => <Post message={p.message} id={p.id} src={p.src}/>)
+    let postsElements = props.message.map(p => <Post message={p.message} id={p.id} src={p.src}/>)
     let newPostElement=React.createRef()
 
     let btnClick1=()=>{
