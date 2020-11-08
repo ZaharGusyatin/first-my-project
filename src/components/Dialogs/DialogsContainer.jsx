@@ -1,29 +1,25 @@
 import React from 'react'
 import {addPostActionCreatorDialogs, updateNewPostTextActionCreatorDialogs} from "../../redux/dialogs_reducer";
 import Dialogs from "./Dialogs";
+import {connect} from "react-redux";
 
 
-const DialogsContainer = (props) => {
-
-    let store = props.store.getState().messagesPage
-
-
-    let btnClick = () => {
-        props.store.dispatch(addPostActionCreatorDialogs())
+let mapStateToProps=(state)=>{
+    return{
+        messagesPage: state.messagesPage
 
     }
-    let onPostChange = (text) => {
-        let action = updateNewPostTextActionCreatorDialogs(text)
-        props.store.dispatch(action)
-
-    };
-    return <Dialogs
-        addPostDialogs={btnClick}
-        updateNewPostTextDialogs={onPostChange}
-        messages={store.messages}
-        dialogs={store.dialogs}
-        newPostTextDialogs={store.newPostTextDialogs}
-    />
-
 }
+let mapDispatchToProps=(dispatch)=>{
+    return{
+        addPostDialogs:()=>{dispatch(addPostActionCreatorDialogs())},
+        updateNewPostTextDialogs:(text)=>{
+            let action = updateNewPostTextActionCreatorDialogs(text)
+         dispatch(action)
+        }
+
+    }
+}
+const DialogsContainer=connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+
 export default DialogsContainer

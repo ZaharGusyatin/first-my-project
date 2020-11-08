@@ -7,8 +7,8 @@ import DialogItem from "./DialogItem/DialogItem";
 const Dialogs = (props) => {
 
 
-    let messageElements = props.messages.map(m => <Message message={m.message} id={m.id}/>)
-    let dialogsElements = props.dialogs.map(d => <DialogItem name={d.name} id={d.id} src={d.src}/>);
+    let messageElements = props.messagesPage.messages.map(m => <Message message={m.message} id={m.id}/>)
+    let dialogsElements = props.messagesPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} src={d.src}/>);
 
 // window.stater=state
 
@@ -30,7 +30,7 @@ const Dialogs = (props) => {
             {messageElements}
             <div><textarea placeholder='Enter your mess' ref={newPostElement}
                            onChange={onPostChange}
-                           value={props.newPostTextDialogs}/></div>
+                           value={props.messagesPage.newPostTextDialogs}/></div>
             <div>
                 <button onClick={btnClick}>send</button>
             </div>
