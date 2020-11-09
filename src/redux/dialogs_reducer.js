@@ -26,16 +26,19 @@ const dialogsReducer = (state=initialState, action) => {
                 id: 6,
                 message: state.newPostTextDialogs,
             }
-            let stateCopy = {...state}
-            stateCopy.messages = [...state.messages]
-            stateCopy.messages.push(newPost)
-            stateCopy.newPostTextDialogs = ''
-            return stateCopy
+            return  {...state,
+                messages:[...state.messages, newPost],
+                newPostTextDialogs:''
+
+            }
+
         }
         case UPDATE_NEW_POST_TEXT_DIALOGS: {
-         let stateCopy={...state}
-            stateCopy.newPostTextDialogs = action.textStringDialogs
-            return stateCopy
+         return  {
+             ...state,
+             newPostTextDialogs: action.textStringDialogs
+         }
+
     }
         default:
             return state
