@@ -7,7 +7,7 @@ import Profile from './components/Profile/Profile';
 import {Route} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-function App(props) {
+function App() {
 
 
     return (
