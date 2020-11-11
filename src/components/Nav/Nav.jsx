@@ -13,7 +13,7 @@ const Nav = () => {
             {/*активКлассНейм потому что НАВЛИНК*/}
         </div>
         <div className={s.item}>
-            <a>News</a>
+            <NavLink to='/users' activeClassName={s.active}>Users</NavLink>
         </div>
         <div className={s.item}>
             <a>Music</a>
