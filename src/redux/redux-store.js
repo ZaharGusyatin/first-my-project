@@ -10,5 +10,6 @@ let reducers=combineReducers({//функция
 });
 let store = createStore(reducers)
 //createStore
+window.store = store
 
 export default store

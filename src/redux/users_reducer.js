@@ -3,11 +3,13 @@ const UNFOLLOW = 'unfollow';
 const SET_USERS = 'users';
 const SET_CURRENT_PAGE = 'currentPage';
 const SET_TOTAL_USER_COUNT= 'setTotalUserCount';
+const SPINNER_IS= 'SPINNER_IS';
 let initialState = {
     users: [],
     pageSize:5,
     totalUsersCount:0,
-    currentPage:1
+    currentPage:1,
+    isFetching:false
 
 }
 const usersReducer = (state = initialState, action) => {
@@ -50,15 +52,21 @@ const usersReducer = (state = initialState, action) => {
             //склеиваем два массива
         }
 
+        case SPINNER_IS:{
+            return {...state, isFetching: action.isFetching}
+            //склеиваем два массива
+        }
+
         default:
             return state
     }
 
 
 }
-export let followAC = (userId) => ({type: FOLLOW, userId})
-export let unFollowAC = (userId) => ({type: UNFOLLOW, userId})
+export let follow = (userId) => ({type: FOLLOW, userId})
+export let unfollow = (userId) => ({type: UNFOLLOW, userId})
 export let setUsers = (users) => ({type: SET_USERS, users})
+export let spinnerIs = (isFetching) => ({type: SPINNER_IS, isFetching})
 export let setTotalUserCount = (totalUserCount) => ({type: SET_TOTAL_USER_COUNT, count:totalUserCount})
 export let setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
 export default usersReducer

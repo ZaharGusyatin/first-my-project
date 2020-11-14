@@ -1,5 +1,6 @@
 const ADD_POST = 'addPost';
 const UPDATE_NEW_POST_TEXT = 'updateNewPostText';
+let SET_USER_PROFILE='SET_USER_PROFILE;';
 let initialState = {
     message: [
         {
@@ -22,7 +23,8 @@ let initialState = {
         {id: 6, message: 'hello16', src: 'https://bipbap.ru/wp-content/uploads/2017/08/LEpwl8j7fQ.jpg'},
 
     ],
-    newPostText: ''
+    newPostText: '',
+    profile:null
 }
 const profileReducer = (state = initialState, action) => {
     //если стеит не придет, то ты будешь инитиалСтеит
@@ -49,6 +51,13 @@ const profileReducer = (state = initialState, action) => {
                 newPostText:action.textString
             }
         }
+
+        case SET_USER_PROFILE: {
+            return {
+                ...state,
+                profile:action.profile
+            }
+        }
         default:
             return state
     }
@@ -57,4 +66,5 @@ const profileReducer = (state = initialState, action) => {
 
 export let addPostActionCreator = () => ({type: ADD_POST})
 export let updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, textString: text})
+export let setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 export default profileReducer
