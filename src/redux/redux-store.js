@@ -2,11 +2,13 @@ import {combineReducers, createStore} from "redux";
 import profileReducer from "./profile_reducer";
 import dialogsReducer from "./dialogs_reducer";
 import usersReducer from "./users_reducer";
+import authReducer from "./auth_reducer";
 let reducers=combineReducers({//функция
     profilePage:profileReducer,
     //обьект профаил который получает данный с профаила!!!это все наш стеит
     messagesPage:  dialogsReducer,
-    usersPage:usersReducer
+    usersPage:usersReducer,
+    auth:authReducer
 });
 let store = createStore(reducers)
 //createStore

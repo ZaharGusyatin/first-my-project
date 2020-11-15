@@ -17,10 +17,11 @@ class UsersContainer extends React.Component {
 
     componentDidMount() {
         this.props.spinnerIs(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{
+            withCredentials:true
+        }).then(response => {
             //отправляет на сервак
             this.props.spinnerIs(false)
-            debugger
             this.props.setUsers(response.data.items)
             this.props.setTotalUserCount(response.data.totalCount)
         })
@@ -29,7 +30,9 @@ class UsersContainer extends React.Component {
     onPageChanged = (pages) => {
         this.props.setCurrentPage(pages)
         this.props.spinnerIs(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pages}&count=${this.props.pageSize}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pages}&count=${this.props.pageSize}`,{
+            withCredentials:true
+        }).then(response => {
             //отправляет на сервак
             this.props.spinnerIs(false)
             debugger
