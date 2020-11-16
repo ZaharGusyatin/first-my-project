@@ -3,6 +3,7 @@ import s from "./Users.module.css";
 import userPhoto from '../../../src/assets/images/default-user-image.png'
 import {NavLink} from "react-router-dom";
 import * as axios from "axios";
+import {UsersAPI} from "../../api/api";
 
 
 let Users = (props) => {
@@ -35,33 +36,12 @@ let Users = (props) => {
                 </dix>
                 <div>
                     {u.followed ?
-                        <button onClick={() => {
-
-                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                withCredentials: true,
-                                headers: {
-                                    "API-KEY": "ba744122-2a28-406a-add4-7500872a721b"
-                                }
-                            }).then(response => {
-                                if (response.data.resultCode == 0) {
-                                    props.unfollow(u.id)
-                                }
-                            })
-
+                        <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                            props.unfollow(u.id)
                         }}>
                             unfollow</button>
-                        : <button onClick={() => {
-                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{}, {
-                                withCredentials: true,
-                                headers: {
-                                    "API-KEY": "ba744122-2a28-406a-add4-7500872a721b"
-                                }
-                            }).then(response => {
-                                if (response.data.resultCode == 0) {
-                                    props.follow(u.id)
-                                }
-                            })
-
+                        : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                            props.follow(u.id)
                         }}>
                             Follow</button>}
 
