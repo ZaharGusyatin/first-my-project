@@ -1,9 +1,7 @@
 import React from 'react'
 import s from "./Users.module.css";
 import userPhoto from '../../../src/assets/images/default-user-image.png'
-import {NavLink} from "react-router-dom";
-import * as axios from "axios";
-import {UsersAPI} from "../../api/api";
+import {NavLink, Redirect} from "react-router-dom";
 
 
 let Users = (props) => {
@@ -14,7 +12,6 @@ let Users = (props) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
-
     return <div>
         <div>
             {

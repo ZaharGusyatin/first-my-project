@@ -70,9 +70,9 @@ export let addPostActionCreator = () => ({type: ADD_POST})
 export let updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, textString: text})
 export let setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 export let getUserProfile = (userId) => (dispatch)=>{
-    UsersAPI.getUsers2(userId).then(data => {
+    UsersAPI.getUsers2(userId).then(response => {
         //отправляет на сервак
-        dispatch(setUserProfile(data))
+        dispatch(setUserProfile(response.data))
     })
 }
 export default profileReducer

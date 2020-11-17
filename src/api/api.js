@@ -4,7 +4,7 @@ import * as axios from "axios";
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     withCredentials: true,
-    "API-KEY": "0d8c134b-4a97-4911-93f4-a06a7dca9c4c"
+    "API-KEY": "03820b8c-395e-46d2-9f9c-d0a3ebd3c99d"
 
 
 })
@@ -13,13 +13,13 @@ export const UsersAPI={
         return instance.get(`users?page=${currentPage}&count=${pageSize}`
         ).then(response => response.data)
     },
-    getUsers2(userId=1){
+    getUsers2(userId){
         return instance.get('profile/'+userId
-        ).then(response => response.data)
+        )
     },
     getUsers3(){
         return instance.get('auth/me'
-        ).then(response => response.data)
+        )
     },
     deleteUsers(userId){
         return instance.delete('follow/'+userId

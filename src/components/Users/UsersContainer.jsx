@@ -4,15 +4,17 @@ import Users from "./Users";
 import {follow, getUsers, setCurrentPage, toggleFollowingProgress, unfollow} from "../../redux/users_reducer";
 
 import Spinner from "../common/Spinner/Spinner";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage,this.props.pageSize)
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged = (pages) => {
-        this.props.getUsers(pages,this.props.pageSize)
+        this.props.getUsers(pages, this.props.pageSize)
 
     }
 
@@ -33,6 +35,7 @@ class UsersContainer extends React.Component {
                 follow={this.props.follow}
                 followingInProgress={this.props.followInProgress}
 
+
             />
 
         </>
@@ -49,7 +52,8 @@ let mapStateToProps = (state) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        followInProgress:state.usersPage.followingInProgress
+        followInProgress: state.usersPage.followingInProgress,
+
 
         //это пропс, который будет закинут в Юзерс, находится в редакс-стор
 
@@ -57,11 +61,13 @@ let mapStateToProps = (state) => {
 
 }
 
-
-export default connect(mapStateToProps, {
-    follow,
-    unfollow,
-    setCurrentPage,
-    toggleFollowingProgress,
-    getUsers
-})(UsersContainer)
+export default compose(
+    connect(mapStateToProps, {
+        follow,
+        unfollow,
+        setCurrentPage,
+        toggleFollowingProgress,
+        getUsers
+    }),
+    withAuthRedirect)
+(UsersContainer)
