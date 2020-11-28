@@ -10,6 +10,7 @@ let reducers=combineReducers({//функция
     messagesPage:  dialogsReducer,
     usersPage:usersReducer,
     auth:authReducer
+
 });
 let store = createStore(reducers, applyMiddleware(thunkMiddleware))
 //createStore

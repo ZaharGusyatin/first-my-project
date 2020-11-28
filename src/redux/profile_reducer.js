@@ -2,7 +2,8 @@ import {UsersAPI} from "../api/api";
 
 const ADD_POST = 'addPost';
 const UPDATE_NEW_POST_TEXT = 'updateNewPostText';
-let SET_USER_PROFILE='SET_USER_PROFILE;';
+const SET_USER_PROFILE='SET_USER_PROFILE;';
+const SET_STATUS='SET_STATUS;';
 let initialState = {
     message: [
         {
@@ -26,7 +27,8 @@ let initialState = {
 
     ],
     newPostText: '',
-    profile:null
+    profile:null,
+    status:''
 }
 const profileReducer = (state = initialState, action) => {
     //если стеит не придет, то ты будешь инитиалСтеит
@@ -60,6 +62,12 @@ const profileReducer = (state = initialState, action) => {
                 profile:action.profile
             }
         }
+        case SET_STATUS:{
+            return {
+                ...state,
+                status: action.status
+            }
+        }
         default:
             return state
     }
@@ -67,6 +75,21 @@ const profileReducer = (state = initialState, action) => {
 
 
 export let addPostActionCreator = () => ({type: ADD_POST})
+export let setStatus = (status) => ({type: SET_STATUS,status})
+export let getStatus=(userId) => (dispatch)=> {
+    UsersAPI.getStatus(userId).then(response => {
+
+        dispatch(setStatus(response.data))
+    })
+}
+export let updateStatus=(status) => (dispatch)=> {
+    UsersAPI.updateStatus(status).then(response => {
+        if (response.data.result.code===0){
+            dispatch(setStatus(status))
+        }
+
+    })
+}
 export let updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, textString: text})
 export let setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 export let getUserProfile = (userId) => (dispatch)=>{

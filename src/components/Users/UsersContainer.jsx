@@ -6,6 +6,14 @@ import {follow, getUsers, setCurrentPage, toggleFollowingProgress, unfollow} fro
 import Spinner from "../common/Spinner/Spinner";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers12345
+} from "../../redux/users_selectors";
 
 class UsersContainer extends React.Component {
 
@@ -19,6 +27,7 @@ class UsersContainer extends React.Component {
     }
 
     render() {
+
 
 
         return <>
@@ -47,12 +56,12 @@ class UsersContainer extends React.Component {
 let mapStateToProps = (state) => {
     //функция для пропсов данных
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followInProgress: state.usersPage.followingInProgress,
+        users: getUsers12345(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followInProgress: getFollowingInProgress(state)
 
 
         //это пропс, который будет закинут в Юзерс, находится в редакс-стор
